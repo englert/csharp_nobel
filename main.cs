@@ -45,7 +45,8 @@ class Program {
         var y2017 = (
             from sor in lista 
             where sor.tipus == "irodalmi"
-            where sor.ev == 2017 select sor
+            where sor.ev == 2017 
+            select sor
             ).SingleOrDefault();
         Console.WriteLine($"4. feladat: {y2017.keresztnev} {y2017.vezeteknev} ");
 
@@ -53,7 +54,8 @@ class Program {
         var szervezetek = (
             from sor in lista 
             where sor.vezeteknev == ""
-            where sor.ev >= 1990 select sor
+            where sor.ev >= 1990 
+            select sor
             );
         Console.WriteLine(    $"5. feladat:");  
         foreach(var szervezet in szervezetek){
