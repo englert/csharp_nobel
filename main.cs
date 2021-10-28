@@ -1,3 +1,4 @@
+//http://www.infojegyzet.hu/vizsgafeladatok/okj-programozas/szoftverfejleszto-181002/
 //﻿év;típus;keresztnév;vezetéknév
 //2017;fizikai;Rainer;Weiss
 //2017;béke;International Campaign to Abolish Nuclear Weapons (ICAN);
