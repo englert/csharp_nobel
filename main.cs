@@ -25,41 +25,55 @@ class Nobel{
 
 class Program {
     public static void Main (string[] args) {
-        Console.WriteLine ("Hello World");
         var f = new StreamReader("nobel.csv");
         var elsosor = f.ReadLine();
         var lista = new List<Nobel>();
         while(!f.EndOfStream){
             lista.Add(  new Nobel(f.ReadLine())  );
         } 
-        // 3. feladat: fizikai Arthur B.;McDonald
+        // 3. feladat:  Arthur B.; McDonald
         var donald = (
             from sor in lista
-            where sor.keresztnev == "Arthur B." && sor.vezeteknev == "McDonald"
-            select sor.tipus).Last();
+            where sor.keresztnev == "Arthur B." 
+            where sor.vezeteknev == "McDonald"
+            select sor.tipus
+            ).SingleOrDefault();
         Console.WriteLine($"3. feladat: {donald}");
 
         // 4. feladat:  2017 irodalmi
-        var y2017 = (from sor in lista where sor.tipus == "irodalmi" && sor.ev == 2017 select sor).First();
+        var y2017 = (
+            from sor in lista 
+            where sor.tipus == "irodalmi"
+            where sor.ev == 2017 select sor
+            ).SingleOrDefault();
         Console.WriteLine($"4. feladat: {y2017.keresztnev} {y2017.vezeteknev} ");
 
         // 5. feladat:  szervezetek 90-től
         var szervezetek = (
-            from sor in lista where sor.vezeteknev == "" && sor.ev >= 1990 select sor);
+            from sor in lista 
+            where sor.vezeteknev == ""
+            where sor.ev >= 1990 select sor
+            );
         Console.WriteLine(    $"5. feladat:");  
         foreach(var szervezet in szervezetek){
             Console.WriteLine($"        {szervezet.ev}: {szervezet.keresztnev}");
         }
 
         // 6. feladat: Curie család
-        var curies = (from sor in lista where sor.vezeteknev.Contains("Curie") select sor);
+        var curies = (
+            from sor in lista 
+            where sor.vezeteknev.Contains("Curie") 
+            select sor
+            );
         Console.WriteLine(    $"6. feladat:");  
         foreach(var curie in curies){
             Console.WriteLine($"        {curie.ev}: {curie.keresztnev} {curie.vezeteknev} ({curie.tipus})");
         }
         // 7. feladat:
-        var dijak = (from sor in lista group sor by sor.tipus);
-
+        var dijak = (
+            from sor in lista 
+            group sor by sor.tipus
+            );
         Console.WriteLine(    $"7. feladat:");  
         foreach(var dij in dijak){
             Console.WriteLine($"        {dij.Key} {dij.Count()} db");
