@@ -81,6 +81,17 @@ class Program {
 
         // 8. feladat            
         Console.WriteLine($"8. feladat: orvosi.txt");
-
+        var orvosi = (
+            from sor in lista
+            where sor.tipus == "orvosi"
+            orderby sor.ev
+            select sor
+        );
+        var fw = new StreamWriter("orvosi.txt");
+        foreach(var sor in orvosi){
+            fw.WriteLine($"{sor.ev}:{sor.keresztnev} {sor.vezeteknev}");
+        }
+        fw.Close();
+    // ------------------- 
     }
 }
